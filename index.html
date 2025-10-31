@@ -8,16 +8,18 @@
     html {
         scroll-behavior: smooth;
     }
+
     body {
         margin: 0;
-        font-family: "Segoe UI", sans-serif;
+        font-family: "Segoe UI", system-ui, sans-serif;
         background: linear-gradient(180deg, #0b0b0b, #1a1a1a);
         color: #fff;
         overflow-x: hidden;
         position: relative;
+        -webkit-tap-highlight-color: transparent;
     }
 
-    /* Фоновое изображение (логотип) */
+    /* Фоновое изображение */
     body::before {
         content: "";
         position: fixed;
@@ -26,100 +28,184 @@
         width: 100%;
         height: 100%;
         background: url("Снимок экрана 2025-10-30 112511.png") no-repeat center center;
-        background-size: 60%;
-        opacity: 0.08;
-        filter: drop-shadow(0 0 20px #7a00cc);
+        background-size: 70%;
+        opacity: 0.07;
+        filter: drop-shadow(0 0 15px #7a00cc);
         z-index: -1;
+        pointer-events: none;
     }
 
+    /* ---------- HEADER ---------- */
     header {
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.85);
         text-align: center;
-        padding: 20px;
-        font-size: 24px;
-        letter-spacing: 2px;
+        padding: 15px 10px 10px;
         border-bottom: 2px solid #7a00cc;
-        box-shadow: 0 0 20px rgba(122, 0, 204, 0.5);
-        animation: fadeIn 1.5s ease-out;
+        box-shadow: 0 0 20px rgba(122, 0, 204, 0.4);
+        animation: fadeIn 1.2s ease-out;
     }
-    nav {
-        display: flex;
-        justify-content: center;
-        background: #111;
-        padding: 10px 0;
-        border-bottom: 1px solid #7a00cc;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 0 15px rgba(122, 0, 204, 0.3);
-        animation: fadeInDown 1.2s ease-out;
-    }
-    nav a {
+
+    header h1 {
+        font-size: 1.8rem;
+        margin: 10px 0 0;
         color: #7a00cc;
-        text-decoration: none;
-        margin: 0 20px;
-        font-weight: bold;
-        transition: 0.3s;
+        text-shadow: 0 0 12px rgba(122, 0, 204, 0.8);
     }
-    nav a:hover {
-        color: #fff;
-        text-shadow: 0 0 10px #7a00cc, 0 0 20px #7a00cc;
-    }
-    section {
-        padding: 80px 20px;
-        text-align: center;
-        max-width: 900px;
-        margin: auto;
-        line-height: 1.7;
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 1.2s ease, transform 1.2s ease;
-    }
-    section.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    h1, h2 {
-        color: #7a00cc;
-        margin-bottom: 10px;
-        text-shadow: 0 0 15px rgba(122, 0, 204, 0.7);
-    }
+
     .logo {
-        width: 180px;
-        margin-top: 10px;
-        filter: drop-shadow(0 0 8px #7a00cc);
-        transition: transform 0.5s ease;
+        width: 140px;
+        filter: drop-shadow(0 0 6px #7a00cc);
+        transition: transform 0.5s ease, filter 0.5s ease;
     }
+
     .logo:hover {
         transform: scale(1.1);
         filter: drop-shadow(0 0 20px #7a00cc);
     }
+
+    /* ---------- NAVIGATION ---------- */
+    nav {
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #7a00cc;
+        box-shadow: 0 0 12px rgba(122, 0, 204, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    nav a {
+        color: #7a00cc;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        transition: 0.3s;
+        font-size: 1rem;
+    }
+
+    nav a:hover {
+        color: #fff;
+        text-shadow: 0 0 10px #7a00cc, 0 0 20px #7a00cc;
+    }
+
+    /* ---------- MOBILE NAVIGATION ---------- */
+    .menu-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .bar {
+        width: 25px;
+        height: 3px;
+        background-color: #7a00cc;
+        margin: 4px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            align-items: center;
+        }
+        nav a {
+            display: none;
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        nav.active a {
+            display: block;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .menu-toggle {
+            display: flex;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+        padding: 60px 20px;
+        text-align: center;
+        max-width: 900px;
+        margin: auto;
+        line-height: 1.6;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1s ease, transform 1s ease;
+        font-size: 1rem;
+    }
+
+    section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h2 {
+        color: #7a00cc;
+        margin-bottom: 10px;
+        font-size: 1.6rem;
+        text-shadow: 0 0 12px rgba(122, 0, 204, 0.8);
+    }
+
+    /* ---------- FOOTER ---------- */
     footer {
         background: #111;
         color: #7a00cc;
         text-align: center;
         padding: 15px;
         border-top: 2px solid #7a00cc;
-        box-shadow: 0 0 20px rgba(122, 0, 204, 0.5);
+        box-shadow: 0 0 12px rgba(122, 0, 204, 0.5);
         animation: fadeIn 1.5s ease-out;
+        font-size: 0.9rem;
     }
 
-    /* Анимации */
+    /* ---------- ANIMATIONS ---------- */
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
+        from { opacity: 0; transform: translateY(-10px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-40px); }
-        to { opacity: 1; transform: translateY(0); }
+
+    /* ---------- RESPONSIVE TEXT ---------- */
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 1.5rem;
+        }
+        .logo {
+            width: 120px;
+        }
+        section {
+            padding: 40px 15px;
+            font-size: 0.95rem;
+        }
     }
+
 </style>
 </head>
 <body>
     <header>
-        ReyesDelSCaos — RDS
-        <div>
+        <img src="logo.png" alt="RDS Logo" class="logo">
+        <h1>ReyesDelSCaos — RDS</h1>
+    </header>
+
     <nav>
+        <div class="menu-toggle" id="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
         <a href="#main">Главная</a>
         <a href="#about">О клане</a>
         <a href="#games">Игры</a>
@@ -127,69 +213,57 @@
     </nav>
 
     <section id="main">
-        <h1>Главная</h1>
+        <h2>Главная</h2>
         <p>
-        𝟏. 𝐑𝐞𝐲𝐞𝐬𝐃𝐞𝐥𝐒𝐂𝐚𝐨𝐬 — 𝐑𝐃𝐒<br>
-        Воспламенись величием, или же превратись в ненужный пепел — Неизвестный RDS<br>
-        ——————<br>
-        𝟐. 𝐎𝐮𝐫 𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧.<br>
-        — Это не клан, а живая легенда, окутанная мраком и славой. Это поколение игроков, чья история написана костями поверженных врагов.<br><br>
-        𝟐.𝟏. 𝐈𝐧𝐭𝐞𝐧𝐭𝐢𝐨𝐧𝐬 𝐚𝐧𝐝 𝐆𝐨𝐚𝐥𝐬.<br>
-        — Наш клан призван гореть ярким пламенем, освещая все новые дороги и открытые возможности. Постепенно возвышая стандарт, мы не собираемся терять ни единицы нашего потенциала. Титаны и Исла– непаханная земля, через которую мы пройдем, как делали это всегда.<br><br>
-        𝟐.𝟐. 𝐈𝐝𝐞𝐨𝐥𝐨𝐠𝐲.<br>
-        — Символом является Феникс, воплощение вечного пламени. И всегда, всегда, мы возрождаемся из пепла еще сильнее прежнего.<br><br>
-        𝟐.𝟑. 𝐒𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞.<br>
-        — Управление клана осуществляется через лидера и его со-лидеров. Мы стараемся максимально контролировать качество взаимоотношений между соклановцами, а чтобы никто не заскучал, у нас проводятся регулярные интересные игровые события, где каждый может проявить себя. Кроме этого, у нас проводятся разноплановые тренировки, которые помогут вам максимально раскрыть свои игровые способности и показать, какой вы RDS на самом деле.<br>
-        ——————<br>
-        𝟑. 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐋𝐢𝐧𝐤𝐬.<br>
-        — Мы активно набираем амбициозных людей, которые желают развиваться и достигать высшего, и обязательно найдем место для каждого.
+            𝟏. <strong>𝐑𝐞𝐲𝐞𝐬𝐃𝐞𝐥𝐒𝐂𝐚𝐨𝐬 — 𝐑𝐃𝐒</strong><br>
+            Воспламенись величием, или же превратись в ненужный пепел — Неизвестный RDS<br><br>
+            Это не клан, а легенда, окутанная мраком и славой. История, написанная костями поверженных врагов.<br><br>
+            Символ — <strong>Феникс</strong>, воплощение вечного пламени. Мы возрождаемся из пепла сильнее прежнего.
         </p>
     </section>
 
     <section id="about">
-        <h1>О клане</h1>
+        <h2>О клане</h2>
         <p>
-        𝟏. ReyesDelSCaos — RDS<br>
-        ⸻⸻<br>
-        𝟐. Описание клана.<br>
-        - Это не просто клан, а легенда, окутанная мраком и славой. Наша история – кровавая сага, написанная мечами и костями поверженных врагов.<br><br>
-        Цели и задачи.<br>
-        - Наш клан готов представлять самое сильное игровое объединение, совместно с нашими союзниками.<br><br>
-        Идеология.<br>
-        - Наш символ – феникс, воплощение вечного пламени. Мы горим ярко, а пав, подобно ему, возрождаемся из пепла, ещё сильнее прежнего.<br>
-        ⸻⸻
+            RDS — это не просто клан, это огонь, который не угасает.<br><br>
+            Наши цели — величие, развитие и победа. Мы строим легенду, объединяя сильных.<br>
+            Феникс — наш символ, отражающий вечное возрождение и мощь духа.
         </p>
     </section>
 
     <section id="games">
-        <h1>Игры</h1>
-        <p>На данный момент клан RDS играет в такие игры как: The Isle Legacy и Path of Titans.</p>
+        <h2>Игры</h2>
+        <p>Наш клан активно играет в <strong>The Isle Legacy</strong> и <strong>Path of Titans</strong>.</p>
     </section>
 
     <section id="contacts">
-        <h1>Контакты</h1>
-        <p>Скоро</p>
+        <h2>Контакты</h2>
+        <p>Скоро появятся официальные ссылки и каналы связи RDS.</p>
     </section>
 
     <footer>
-        © 2025 Made by Or1oN  
+        © 2025 Made by Or1oN
     </footer>
 
     <script>
-        // Анимация появления секций при скролле
+        // Плавное появление секций
         const sections = document.querySelectorAll('section');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.2 });
 
         sections.forEach(section => observer.observe(section));
+
+        // Мобильное меню
+        const toggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+        toggle.addEventListener('click', () => nav.classList.toggle('active'));
     </script>
 </body>
 </html>
+
 
 
 
