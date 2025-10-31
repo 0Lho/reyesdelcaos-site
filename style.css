@@ -28,7 +28,7 @@ body::before {
 
 /* Шапка */
 .header {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   text-align: center;
   padding: 10px 0 15px;
   border-bottom: 2px solid #7a00cc;
@@ -41,6 +41,7 @@ body::before {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -56,7 +57,7 @@ body::before {
 }
 
 .site-title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   letter-spacing: 1.5px;
   color: #fff;
   text-shadow: 0 0 12px #7a00cc;
@@ -66,20 +67,25 @@ body::before {
 .classic-nav {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap;
   background: #111;
   border-top: 1px solid #7a00cc;
   border-bottom: 1px solid #7a00cc;
-  padding: 10px 0;
+  padding: 12px 0;
   animation: fadeInDown 0.4s ease-out;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .classic-nav a {
   color: #7a00cc;
   text-decoration: none;
-  margin: 0 15px;
+  margin: 0 20px;
   font-weight: 600;
   transition: 0.3s;
+  font-size: 1rem;
 }
 
 .classic-nav a:hover,
@@ -88,7 +94,7 @@ body::before {
   text-shadow: 0 0 10px #7a00cc, 0 0 20px #7a00cc;
 }
 
-/* Основной контент */
+/* Контент */
 main {
   max-width: 900px;
   margin: 60px auto;
@@ -124,19 +130,40 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Мобильная адаптация */
+/* Адаптация под телефон */
 @media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-  }
   .site-title {
     font-size: 1.1rem;
   }
+
   .classic-nav a {
-    margin: 8px 10px;
+    margin: 0 10px;
+    font-size: 0.9rem;
   }
+
+  .logo {
+    width: 45px;
+  }
+
   main {
     margin-top: 40px;
     padding: 10px;
   }
 }
+
+@media (max-width: 420px) {
+  .classic-nav {
+    flex-wrap: wrap;
+    padding: 8px 0;
+  }
+
+  .classic-nav a {
+    margin: 6px 8px;
+    font-size: 0.85rem;
+  }
+
+  .site-title {
+    font-size: 1rem;
+  }
+}
+
